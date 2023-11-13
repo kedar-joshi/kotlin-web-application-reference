@@ -11,13 +11,16 @@ plugins {
 // Java compiler configuration
 java {
 
-	/*
-	 	Gradle v8.4 supports Kotlin DSL v1.9.10 which lacks support for Java 21 target.
-
-		Although Kotlin compiler options are sufficient for Gradle,
-		IntelliJ often complains if this Java target compatibility is not explicitly set.
+	/**
+	 * Gradle with Kotlin DSL is dependent on Kotlin to officially support the latest JDK.
+	 * This means it often lags behind in offering full compilation support on the project JDK.
+	 *
+	 * This configuration allows compiling Gradle build scripts with the supported JDK version as target,
+	 * irrespective of the target JDK for the project.
+	 *
+	 * See also, kotlin > compilerOptions > jvmTarget.
 	 */
-	targetCompatibility = JavaVersion.VERSION_20
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 // Kotlin compiler configuration
@@ -28,8 +31,16 @@ kotlin {
 
 	compilerOptions {
 
-		// Gradle v8.4 supports Kotlin DSL v1.9.10 which lacks support for Java 21 target.
-		jvmTarget = JvmTarget.JVM_20
+		/**
+		 * Gradle with Kotlin DSL is dependent on Kotlin to officially support the latest JDK.
+		 * This means it often lags behind in offering full compilation support on the project JDK.
+		 *
+		 * This configuration allows compiling Gradle build scripts with the supported JDK version as target,
+		 * irrespective of the target JDK for the project.
+		 *
+		 * See also, java > targetCompatibility.
+		 */
+		jvmTarget = JvmTarget.JVM_21
 	}
 }
 
